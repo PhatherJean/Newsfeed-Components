@@ -86,6 +86,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Watcha Mean Man',
+    date: 'Dec 3th, 2020',
+    firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
+        moff wicket tatooine luke.Solo wampa wampa calrissian yoda moff.Darth grievous darth gonk darth hutt.Darth baba skywalker
+        watto fett jango maul han.Mon ewok sidious sidious lando kenobi grievous gamorrean solo.Yoda wedge utapau darth calamari.
+        Hutt calamari darth jabba.Darth dooku amidala organa moff.Boba darth binks solo hutt skywalker dantooine skywalker.Qui - gonn
+        jar twi'lek jinn leia jango skywalker mon.`,
+    
+        secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+        hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+        hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+        hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+  thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+        Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+        Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -114,3 +132,55 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const head = document.querySelector('.articles')
+function articleMaker(obj) {
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const xSpan = document.createElement('span');
+  
+
+  head.appendChild(article);
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+  article.appendChild(xSpan);
+
+
+  article.classList.add('article');
+  title.classList.add('title');
+  xSpan.classList.add('expandButton')
+  date.classList.add('date')
+
+
+
+  title.textContent = obj.title;
+  date.textContent =obj.date;
+  para1.textContent = obj.firstParagraph;
+para2.textContent = obj.secondParagraph;
+  para3.textContent = obj.thirdParagraph;
+  xSpan.textContent = '+';
+
+
+  xSpan.addEventListener('click', (e) => {
+    article.classList.toggle('article-open');
+  });
+  return article;
+}
+
+// console.log(data)
+// const articleEl = data.map((item) => {
+//  return articleMaker(item)
+// });
+// console.log(articleEl);
+
+data.forEach((data) => {
+  const newArticle = articleMaker(data);
+  head.appendChild(newArticle);
+})
